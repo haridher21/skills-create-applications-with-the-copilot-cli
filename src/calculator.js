@@ -65,4 +65,53 @@ function divide(a, b) {
   return x / y;
 }
 
-module.exports = { add, subtract, multiply, divide };
+/**
+ * Modulo (remainder) of a divided by b
+ * @param {number} a
+ * @param {number} b
+ * @returns {number}
+ */
+function modulo(a, b) {
+  const x = Number(a);
+  const y = Number(b);
+  if (Number.isNaN(x) || Number.isNaN(y)) {
+    throw new TypeError('modulo: both arguments must be numbers');
+  }
+  if (y === 0) {
+    throw new Error('modulo: modulo by zero');
+  }
+  return x % y;
+}
+
+/**
+ * Power: base raised to exponent
+ * @param {number} base
+ * @param {number} exponent
+ * @returns {number}
+ */
+function power(base, exponent) {
+  const b = Number(base);
+  const e = Number(exponent);
+  if (Number.isNaN(b) || Number.isNaN(e)) {
+    throw new TypeError('power: both arguments must be numbers');
+  }
+  return b ** e;
+}
+
+/**
+ * Square root with error handling for negative inputs
+ * @param {number} n
+ * @returns {number}
+ */
+function squareRoot(n) {
+  const x = Number(n);
+  if (Number.isNaN(x)) {
+    throw new TypeError('squareRoot: argument must be a number');
+  }
+  if (x < 0) {
+    throw new Error('squareRoot: negative input');
+  }
+  return Math.sqrt(x);
+}
+
+module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot };

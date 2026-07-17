@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require('../calculator');
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require('../calculator');
 
 describe('Calculator basic operations (from image examples)', () => {
   test('2 + 3 = 5', () => {
@@ -15,6 +15,54 @@ describe('Calculator basic operations (from image examples)', () => {
 
   test('20 / 5 = 4', () => {
     expect(divide(20, 5)).toBe(4);
+  });
+});
+
+describe('Extended operations (modulo, power, square root)', () => {
+  test('modulo: 5 % 2 = 1 (image example)', () => {
+    expect(modulo(5, 2)).toBe(1);
+  });
+
+  test('power: 2 ^ 3 = 8 (image example using exponent)', () => {
+    expect(power(2, 3)).toBe(8);
+  });
+
+  test('squareRoot: sqrt(16) = 4 (image example)', () => {
+    expect(squareRoot(16)).toBe(4);
+  });
+
+  test('modulo with numeric strings', () => {
+    expect(modulo('10', '3')).toBe(1);
+  });
+
+  test('power with numeric strings', () => {
+    expect(power('2', '8')).toBe(256);
+  });
+
+  test('squareRoot with numeric string', () => {
+    expect(squareRoot('9')).toBe(3);
+  });
+});
+
+describe('Extended operations edge cases and validation', () => {
+  test('modulo by zero throws', () => {
+    expect(() => modulo(1, 0)).toThrow(/modulo by zero/);
+  });
+
+  test('power with negative exponent', () => {
+    expect(power(2, -3)).toBeCloseTo(0.125);
+  });
+
+  test('power invalid inputs throw TypeError', () => {
+    expect(() => power('a', 2)).toThrow(TypeError);
+  });
+
+  test('squareRoot of negative number throws', () => {
+    expect(() => squareRoot(-4)).toThrow(/negative input/);
+  });
+
+  test('squareRoot invalid input throws TypeError', () => {
+    expect(() => squareRoot({})).toThrow(TypeError);
   });
 });
 
